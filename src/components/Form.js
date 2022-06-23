@@ -21,22 +21,37 @@ function Form(props) {
     { name: "password", type: "password" },
   ];
 
+  //   function to go to previous question
   function goBack() {
     setStep((prevStep) => prevStep - 1);
   }
 
+  //   function to go to next questionn
   function nextPage() {
     setStep((prevStep) => prevStep + 1);
   }
 
+  //   function to display submit buttons
   function testResults() {
     if (step === formData.length - 2) {
       setShowResults(true);
     }
   }
-  //   console.log(showResults);
-  //   console.log(formData.length - 1, step);
+
+  function handleChange(e) {
+    console.log(e.target.value);
+    const { name, value } = e.target;
+    setInput((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  }
+
   console.log(input);
+
+  //   useEffect(() => {
+  //     setInput(formData[step].name || "");
+  //   }, [step]);
 
   return (
     <div>
@@ -52,6 +67,7 @@ function Form(props) {
         showResults={showResults}
         input={input}
         setInput={setInput}
+        handleChange={handleChange}
       />
     </div>
   );

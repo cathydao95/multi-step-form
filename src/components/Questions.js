@@ -1,27 +1,33 @@
-function Questions(props) {
+function Questions({
+  formData,
+  input,
+  setInput,
+  step,
+  nextPage,
+  showResults,
+  testResults,
+  handleChange,
+}) {
   function handleSubmit(e) {
     e.preventDefault();
-    props.nextPage();
-    props.testResults();
+    nextPage();
+    testResults();
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor={props.formData[props.step]}>
-            {props.formData[props.step].name}
-          </label>
+          <label htmlFor={formData[step]}>{formData[step].name}</label>
           <input
-            type={props.formData[props.step].type}
-            placeholder={props.formData[props.step].name}
-            onChange={props.handleChange}
-            name={props.formData[props.step].name}
-            id={props.formData[props.step].name}
-            value={props.input}
+            type={formData[step].type}
+            placeholder={formData[step].name}
+            onChange={handleChange}
+            name={formData[step].name}
+            id={formData[step].name}
             required
           />
-          {props.showResults ? (
+          {showResults ? (
             <button type="submit">Submit</button>
           ) : (
             <button type="submit">Next</button>
